@@ -108,10 +108,10 @@ class SortingRobot:
                 self.swap_item() # swapping larger value in hand for smaller
                 self.move_left() # preparing to return it to the next place on the left
             elif self.compare_item() == -1 and self.light_is_on == True:
-                self.move_left() 
-                self.swap_item() # putting item back where it came from
-                self.move_right() # advancing to next item
+                self.move_left() #moving back to replace smaller item
             elif self.compare_item() == 0 and self.light_is_on == True:
+                self.move_left()
+                self.swap_item()
                 self.move_right() # advancing if values are identical
             else:
                 pass
