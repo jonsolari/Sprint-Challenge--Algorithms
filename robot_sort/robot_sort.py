@@ -96,7 +96,7 @@ class SortingRobot:
 
     def sort(self):
         while self.can_move_right == True:
-            self.swap_item() #swap initial "None" for first item
+            self.swap_item() #swap initial "None" for first item / return it to hand for advancement
             if self.light_is_on() != True:
                 self.set_light_on() # denoting that there is a "None" in the list now
             else:
