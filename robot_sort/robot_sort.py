@@ -96,42 +96,28 @@ class SortingRobot:
 
     def sort(self):
         while self.can_move_right == True:
-            self.swap_item()
+            self.swap_item() #swap initial "None" for first item
             if self.light_is_on() != True:
-                self.set_light_on()
+                self.set_light_on() # denoting that there is a "None" in the list now
             else:
-                self.set_light_off()
+                self.set_light_off() # checking to see if current item is "None"
                 self.move_right()
-                self.swap_item()
+                self.swap_item() # swapping "None" for a value to compare
             self.move_right()
             if self.compare_item() == 1 and self.light_is_on == True:
-                self.swap_item()         
-                self.move_left()
+                self.swap_item() # swapping larger value in hand for smaller
+                self.move_left() # preparing to return it to the next place on the left
             elif self.compare_item() == -1 and self.light_is_on == True:
-                self.move_left()
-                self.swap_item()
-                self.move_right()
+                self.move_left() 
+                self.swap_item() # putting item back where it came from
+                self.move_right() # advancing to next item
             elif self.compare_item() == 0 and self.light_is_on == True:
-                self.move_right()
+                self.move_right() # advancing if values are identical
             else:
                 pass
-
-            if self.compare_item() == 1 and self.light_is_on == False:
-                self.swap_item()         
-                self.move_left()
-            elif self.compare_item() == -1 and self.light_is_on == False:
-                self.move_left()
-                self.swap_item()
-                self.move_right()
-            elif self.compare_item() == 0 and self.light_is_on == False:
-                self.move_right()
-            else:
-                pass
-
-# Go back to the start of the list
         if self.can_move_right is False:
             while self.can_move_left is True:
-                self.move_left()
+                self.move_left() # returning to leftmost item when reaching the end
                      
        
 
