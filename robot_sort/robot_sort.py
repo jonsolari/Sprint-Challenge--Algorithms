@@ -92,12 +92,51 @@ class SortingRobot:
         """
         return self._light == "ON"
 
+# Attempting a bubble sort here. The robot will pick up an item, move right, compare it to the next item, and swap them if the current one is larger (and then go back left to replace the "None" space with the smaller item). The robot will move right again, repeat the process until it can't move right anymore, at which point it will go all the way back to the left to make its next pass.
+
     def sort(self):
-        """
-        Sort the robot's list.
-        """
-        # Fill this out
-        pass
+        while self.can_move_right == True:
+            self.swap_item() #swap initial "None" for first item / return it to hand for advancement
+            if self.light_is_on() != True:
+                self.set_light_on() # denoting that there is a "None" in the list now
+            else:
+                self.set_light_off() # checking to see if current item is "None"
+                self.move_right()
+                self.swap_item() # swapping "None" for a value to compare
+            self.move_right()
+            if self.compare_item() == 1 and self.light_is_on == True:
+                self.swap_item() # swapping larger value in hand for smaller
+                self.move_left() # preparing to return it to the next place on the left
+            elif self.compare_item() == -1 and self.light_is_on == True:
+                self.move_left() #moving back to replace smaller item
+            elif self.compare_item() == 0 and self.light_is_on == True:
+                self.move_left()
+                self.swap_item()
+                self.move_right() # advancing if values are identical
+            else:
+                pass
+        if self.can_move_right is False:
+            while self.can_move_left is True:
+                self.move_left() # returning to leftmost item when reaching the end
+                     
+       
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 if __name__ == "__main__":
