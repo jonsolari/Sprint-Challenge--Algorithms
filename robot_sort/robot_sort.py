@@ -92,7 +92,7 @@ class SortingRobot:
         """
         return self._light == "ON"
 
-# Attempting a bubble sort here. The robot will pick up an item, move right, compare it to the next item, and swap them if the current one is larger (and then go back left to replace the "None" space with the smaller item). The robot will move right again, repeat the process until it can't move right anymore, at which point it will go all the way back to the start.
+# Attempting a bubble sort here. The robot will pick up an item, move right, compare it to the next item, and swap them if the current one is larger (and then go back left to replace the "None" space with the smaller item). The robot will move right again, repeat the process until it can't move right anymore, at which point it will go all the way back to the left to make its next pass.
 
     def sort(self):
         while self.can_move_right == True:
