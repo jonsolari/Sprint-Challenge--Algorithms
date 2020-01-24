@@ -92,24 +92,47 @@ class SortingRobot:
         """
         return self._light == "ON"
 
+# Attempting a bubble sort here. The robot will pick up an item, move right, compare it to the next item, and swap them if the current one is larger (and then go back left to replace the "None" space with the smaller item). The robot will move right again, repeat the process until it can't move right anymore, at which point it will go all the way back to the start.
+
     def sort(self):
-        self.swap_item()
-        self.move_right()
-        if self.compare_item() == 1:
+        while self.can_move_right == True:
             self.swap_item()
-            self.move_left()
-            self.swap_item()  
+            if self.light_is_on() != True:
+                self.set_light_on()
+            else:
+                self.set_light_off()
+                self.move_right()
+                self.swap_item()
             self.move_right()
-            if self.can_move_right() is False:
-                if self.can_move_left() is True:
-                    self.move_left()
-            self.sort()
-            
-        else:
-            self.move_left()
-            self.swap_item()
-            self.move_right()
-            self.sort()
+            if self.compare_item() == 1 and self.light_is_on == True:
+                self.swap_item()         
+                self.move_left()
+            elif self.compare_item() == -1 and self.light_is_on == True:
+                self.move_left()
+                self.swap_item()
+                self.move_right()
+            elif self.compare_item() == 0 and self.light_is_on == True:
+                self.move_right()
+            else:
+                pass
+
+            if self.compare_item() == 1 and self.light_is_on == False:
+                self.swap_item()         
+                self.move_left()
+            elif self.compare_item() == -1 and self.light_is_on == False:
+                self.move_left()
+                self.swap_item()
+                self.move_right()
+            elif self.compare_item() == 0 and self.light_is_on == False:
+                self.move_right()
+            else:
+                pass
+
+# Go back to the start of the list
+        if self.can_move_right is False:
+            while self.can_move_left is True:
+                self.move_left()
+                     
        
 
 
